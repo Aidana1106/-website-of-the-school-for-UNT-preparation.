@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="kz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ENT-Bilim тіркелу — Математика және Информатика бойынша ҰБТ-ға дайындалу">
+    <title>Тіркелу — ENT-Bilim</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+        }
+        
+        .auth-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            padding: 48px;
+            max-width: 450px;
+            width: 100%;
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .auth-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .auth-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
+        .auth-form .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .auth-form .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .auth-form .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--bg-gray-200);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            transition: all var(--transition-base);
+        }
+        
+        .auth-form .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        
+        .auth-form .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--bg-gray-200);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            background: var(--bg-white);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+        
+        .auth-form .form-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        
+        .auth-form .btn-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--bg-gray-200);
+        }
+        
+        .auth-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .success-message {
+            background: #d1fae5;
+            color: #059669;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-text">ENT-<span class="logo-accent">Bilim</span></span>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Басты бет</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contacts.html" class="nav-link">Байланыс</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="theme-icon theme-icon-light">☀️</span>
+                        <span class="theme-icon theme-icon-dark">🌙</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 data-translate="register_title">Тіркелу</h1>
+                <p>Жеке кабинет ашу үшін деректеріңізді толтырыңыз</p>
+            </div>
+            
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+            
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label class="form-label" data-translate="register_name">Атыңыз</label>
+                    <input type="text" class="form-input" id="name" name="name" placeholder="Атыңыз" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-translate="register_email">Электрондық пошта</label>
+                    <input type="email" class="form-input" id="email" name="email" placeholder="email@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-translate="register_password">Құпия сөз</label>
+                    <div style="position: relative;">
+                        <input type="password" class="form-input" id="password" name="password" placeholder="••••••••" required minlength="6" style="padding-right: 45px;">
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px; display: flex; align-items: center;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="password-icon">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-translate="register_confirm_password">Құпия сөзді растау</label>
+                    <div style="position: relative;">
+                        <input type="password" class="form-input" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required style="padding-right: 45px;">
+                        <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px; display: flex; align-items: center;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="confirmPassword-icon">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Рөл</label>
+                    <select class="form-select" id="role" name="role" required onchange="toggleSubjects()">
+                        <option value="">Таңдаңыз</option>
+                        <option value="student">Оқушы</option>
+                        <option value="teacher">Мұғалім</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="subjectsGroup" style="display: none;">
+                    <label class="form-label">Пәндер</label>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <label style="display: flex; align-items: center; cursor: pointer; padding: 10px; border: 2px solid var(--bg-gray-200); border-radius: var(--radius-lg); transition: all var(--transition-base);">
+                            <input type="checkbox" name="subjects" value="mathematics" style="margin-right: 10px; width: 18px; height: 18px; cursor: pointer;">
+                            <span style="font-weight: 500;">Математика</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer; padding: 10px; border: 2px solid var(--bg-gray-200); border-radius: var(--radius-lg); transition: all var(--transition-base);">
+                            <input type="checkbox" name="subjects" value="informatics" style="margin-right: 10px; width: 18px; height: 18px; cursor: pointer;">
+                            <span style="font-weight: 500;">Информатика</span>
+                        </label>
+                    </div>
+                    <small style="color: var(--text-secondary); margin-top: 8px; display: block;">Кемінде бір пән таңдаңыз</small>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-submit" data-translate="register_btn">
+                    Тіркелу
+                </button>
+            </form>
+            
+            <div class="auth-footer">
+                <p data-translate="register_have_account">Аккаунтыңыз бар ма?</p>
+                <a href="login.html" class="btn btn-secondary btn-block" style="margin-top: 16px;" data-translate="register_login_link">
+                    Кіру
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const button = input.nextElementSibling;
+            const icon = button.querySelector('svg');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+            } else {
+                input.type = 'password';
+                icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            }
+        }
+        
+        function toggleSubjects() {
+            const role = document.getElementById('role').value;
+            const subjectsGroup = document.getElementById('subjectsGroup');
+            if (role === 'student') {
+                subjectsGroup.style.display = 'block';
+            } else {
+                subjectsGroup.style.display = 'none';
+                // Сбросить выбор предметов
+                document.querySelectorAll('input[name="subjects"]').forEach(cb => cb.checked = false);
+            }
+        }
+    </script>
+</body>
+</html>
+

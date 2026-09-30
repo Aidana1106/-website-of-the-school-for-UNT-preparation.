@@ -1,0 +1,52 @@
+{
+  "name": "ent-bilim",
+  "version": "1.0.0",
+  "description": "ENT-Bilim — Математика және Информатика бойынша ҰБТ-ға дайындалуға арналған онлайн платформа",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "frontend": "live-server --port=8000 --watch=css,js",
+    "build": "npm run minify-css && npm run minify-js",
+    "minify-css": "cleancss -o css/style.min.css css/style.css",
+    "minify-js": "terser js/script.js -o js/script.min.js -c -m"
+  },
+  "keywords": [
+    "ent",
+    "unt",
+    "kazakhstan",
+    "education",
+    "online-courses",
+    "ent-bilim",
+    "mathematics",
+    "informatics",
+    "kazakh"
+  ],
+  "author": "ENT-Bilim Team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^7.0.10",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.2",
+    "live-server": "^1.2.2",
+    "nodemon": "^3.0.1",
+    "terser": "^5.27.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/ent-bilim.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/ent-bilim/issues"
+  },
+  "homepage": "https://ent-bilim.kz"
+}

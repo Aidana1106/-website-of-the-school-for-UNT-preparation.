@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Получить Chat ID - Telegram Bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+        .result.success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            display: block;
+        }
+        .result.error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+            display: block;
+        }
+        .result.info {
+            background: #d1ecf1;
+            border: 2px solid #17a2b8;
+            color: #0c5460;
+            display: block;
+        }
+        .chat-id {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        .instructions ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        .code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Получить Chat ID</h1>
+        <p class="subtitle">Для Telegram бота @ent_bilim_support_bot</p>
+        
+        <div class="instructions">
+            <strong>📝 Инструкция:</strong>
+            <ol>
+                <li>Откройте Telegram и группу "Ent-bilim"</li>
+                <li>Отправьте <strong>ЛЮБОЕ сообщение</strong> в группу (например: "тест")</li>
+                <li>Вставьте токен бота ниже и нажмите "Получить Chat ID"</li>
+            </ol>
+        </div>
+        
+        <div class="form-group">
+            <label for="token">Токен бота:</label>
+            <input 
+                type="text" 
+                id="token" 
+                value="8268785420:AAHulwutqa9iwQRSPw5zohsT3IUcJmOZKi0"
+                placeholder="Вставьте токен бота"
+            >
+        </div>
+        
+        <button id="getChatId" onclick="getChatId()">Получить Chat ID</button>
+        
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        async function getChatId() {
+            const token = document.getElementById('token').value.trim();
+            const button = document.getElementById('getChatId');
+            const result = document.getElementById('result');
+            
+            if (!token) {
+                result.className = 'result error';
+                result.innerHTML = '❌ Введите токен бота!';
+                return;
+            }
+            
+            button.disabled = true;
+            button.textContent = 'Загрузка...';
+            result.className = 'result info';
+            result.innerHTML = '⏳ Получение данных...';
+            
+            try {
+                const url = `https://api.telegram.org/bot${token}/getUpdates`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (!data.ok) {
+                    throw new Error(data.description || 'Ошибка API');
+                }
+                
+                if (data.result.length === 0) {
+                    result.className = 'result error';
+                    result.innerHTML = `
+                        <strong>⚠️ Не найдено обновлений!</strong><br><br>
+                        <strong>Что делать:</strong><br>
+                        1. Откройте Telegram<br>
+                        2. Откройте группу "Ent-bilim"<br>
+                        3. Отправьте ЛЮБОЕ сообщение в группу<br>
+                        4. Подождите 2-3 секунды<br>
+                        5. Нажмите кнопку снова
+                    `;
+                    button.disabled = false;
+                    button.textContent = 'Получить Chat ID';
+                    return;
+                }
+                
+                // Ищем группу
+                let foundGroup = null;
+                for (let i = data.result.length - 1; i >= 0; i--) {
+                    const update = data.result[i];
+                    if (update.message && update.message.chat) {
+                        const chat = update.message.chat;
+                        if (chat.type === 'group' || chat.type === 'supergroup') {
+                            foundGroup = chat;
+                            break;
+                        }
+                    }
+                }
+                
+                if (foundGroup) {
+                    result.className = 'result success';
+                    result.innerHTML = `
+                        <strong>✅ Chat ID найден!</strong><br><br>
+                        <strong>Название группы:</strong> ${foundGroup.title || 'Не указано'}<br>
+                        <strong>Тип:</strong> ${foundGroup.type}<br><br>
+                        <strong>Ваш Chat ID:</strong><br>
+                        <div class="chat-id">${foundGroup.id}</div><br>
+                        <strong>Добавьте в файл .env:</strong><br>
+                        <div class="code">TELEGRAM_CHAT_ID=${foundGroup.id}</div>
+                    `;
+                } else {
+                    result.className = 'result info';
+                    result.innerHTML = `
+                        <strong>ℹ️ Группа не найдена в последних обновлениях</strong><br><br>
+                        <strong>Найденные чаты:</strong><br>
+                        ${data.result.map(update => {
+                            if (update.message && update.message.chat) {
+                                const chat = update.message.chat;
+                                return `Chat ID: <strong>${chat.id}</strong> (${chat.type})`;
+                            }
+                            return '';
+                        }).filter(Boolean).join('<br>') || 'Нет чатов'}
+                    `;
+                }
+                
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `
+                    <strong>❌ Ошибка:</strong><br>
+                    ${error.message}<br><br>
+                    Проверьте токен бота и подключение к интернету.
+                `;
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Получить Chat ID';
+            }
+        }
+    </script>
+</body>
+</html>
+

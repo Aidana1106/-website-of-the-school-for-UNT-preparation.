@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="kz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ENT-Bilim тапсырма — Математика және Информатика тапсырмалары">
+    <title>Тапсырма — ENT-Bilim</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .assignment-container {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+        
+        .assignment-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            box-shadow: var(--shadow-lg);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .assignment-header {
+            margin-bottom: 24px;
+        }
+        
+        .assignment-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        
+        .assignment-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .assignment-meta-item {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .assignment-deadline.urgent {
+            color: #ef4444;
+            font-weight: 600;
+        }
+        
+        .assignment-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            white-space: pre-wrap;
+        }
+        
+        .assignment-form {
+            margin-top: 32px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--bg-gray-200);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all var(--transition-base);
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--bg-gray-200);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.05);
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .result-section {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-top: 32px;
+        }
+        
+        .result-grade {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        .result-comment {
+            color: var(--text-primary);
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-text">ENT-<span class="logo-accent">Bilim</span></span>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Басты бет</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link active">Жеке кабинет</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-right">
+                    <div id="userInfo" style="display: flex; gap: 12px; align-items: center;">
+                        <span id="userName"></span>
+                        <button class="btn btn-secondary" onclick="logout()">Шығу</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="assignment-container">
+        <div class="container">
+            <div class="assignment-card">
+                <div id="assignmentContent">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Тапсырма жүктелуде...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        let currentAssignment = null;
+        let currentSubmission = null;
+        
+        async function loadAssignment() {
+            const container = document.getElementById('assignmentContent');
+            
+            try {
+                const isAuthenticated = await requireAuth();
+                if (!isAuthenticated) return;
+                
+                const user = getUser();
+                if (user) {
+                    document.getElementById('userName').textContent = user.name;
+                }
+                
+                const urlParams = new URLSearchParams(window.location.search);
+                const assignmentId = urlParams.get('id');
+                
+                if (!assignmentId) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">⚠️</div>
+                            <h3>Тапсырма табылмады</h3>
+                            <p>Тапсырма ID көрсетілмеген.</p>
+                            <a href="dashboard.html" class="btn btn-primary" style="margin-top: 24px;">Жеке кабинетке оралу</a>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const [assignment, submissions] = await Promise.all([
+                    getAssignment(assignmentId),
+                    getMySubmissions()
+                ]);
+                
+                currentAssignment = assignment;
+                currentSubmission = submissions.find(s => s.assignment_id == assignmentId);
+                
+                displayAssignment();
+            } catch (error) {
+                console.error('Тапсырма жүктеу қатесі:', error);
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <h3>Қате орын алды</h3>
+                        <p>Тапсырманы жүктеу мүмкін болмады.</p>
+                        <a href="dashboard.html" class="btn btn-primary" style="margin-top: 24px;">Жеке кабинетке оралу</a>
+                    </div>
+                `;
+            }
+        }
+        
+        function displayAssignment() {
+            const container = document.getElementById('assignmentContent');
+            const assignment = currentAssignment;
+            const submission = currentSubmission;
+            
+            let deadlineDisplay = '';
+            let deadlineClass = '';
+            if (assignment.deadline) {
+                const deadline = new Date(assignment.deadline);
+                const now = new Date();
+                const daysLeft = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
+                
+                if (daysLeft < 0) {
+                    deadlineDisplay = `Мерзімі өтті (${Math.abs(daysLeft)} күн бұрын)`;
+                    deadlineClass = 'urgent';
+                } else if (daysLeft === 0) {
+                    deadlineDisplay = 'Мерзімі бүгін';
+                    deadlineClass = 'urgent';
+                } else if (daysLeft <= 3) {
+                    deadlineDisplay = `Қалды: ${daysLeft} күн`;
+                    deadlineClass = 'urgent';
+                } else {
+                    deadlineDisplay = `Мерзімі: ${deadline.toLocaleDateString('kk-KZ')}`;
+                }
+            }
+            
+            const subjectText = assignment.subject === 'mathematics' ? 'Математика' : 'Информатика';
+            
+            let resultSection = '';
+            if (submission && submission.grade !== null) {
+                resultSection = `
+                    <div class="result-section">
+                        <div class="result-grade">Балл: ${submission.grade}</div>
+                        ${submission.teacher_comment ? `<div class="result-comment">${escapeHtml(submission.teacher_comment)}</div>` : ''}
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = `
+                <div class="assignment-header">
+                    <h1 class="assignment-title">${escapeHtml(assignment.title)}</h1>
+                    <div class="assignment-meta">
+                        <span>Пән: ${subjectText}</span>
+                        ${deadlineDisplay ? `<span class="assignment-deadline ${deadlineClass}">${deadlineDisplay}</span>` : ''}
+                        ${assignment.teacher_name ? `<span>Мұғалім: ${escapeHtml(assignment.teacher_name)}</span>` : ''}
+                    </div>
+                </div>
+                
+                <div class="assignment-description">${escapeHtml(assignment.description || 'Сипаттама жоқ')}</div>
+                
+                ${assignment.file_url ? `
+                    <div style="margin-bottom: 24px;">
+                        <a href="${assignment.file_url}" target="_blank" class="btn btn-secondary">Файлды жүктеу</a>
+                    </div>
+                ` : ''}
+                
+                ${resultSection}
+                
+                ${submission && submission.grade === null ? `
+                    <div class="assignment-form">
+                        <h3 style="margin-bottom: 16px;">Сіздің жіберуіңіз</h3>
+                        <div class="form-group">
+                            <label class="form-label">Жауап</label>
+                            <textarea class="form-textarea" id="answerText" readonly>${escapeHtml(submission.answer_text || '')}</textarea>
+                        </div>
+                        ${submission.file_url ? `
+                            <div style="margin-bottom: 16px;">
+                                <a href="${submission.file_url}" target="_blank" class="btn btn-secondary">Жіберілген файлды көру</a>
+                            </div>
+                        ` : ''}
+                        <p style="color: var(--text-secondary);">Тапсырма тексерілуде...</p>
+                    </div>
+                ` : `
+                    <div class="assignment-form">
+                        <form id="assignmentForm">
+                            <div class="form-group">
+                                <label class="form-label" for="answerText">Жауабыңыз</label>
+                                <textarea class="form-textarea" id="answerText" name="answer_text" required placeholder="Жауабыңызды енгізіңіз..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Файл жүктеу (қосымша)</label>
+                                <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                                    <input type="file" id="fileInput" onchange="handleFileSelect(event)">
+                                    <p id="fileName">Файлды таңдау үшін басыңыз</p>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block">
+                                ${submission ? 'Жаңарту' : 'Жіберу'}
+                            </button>
+                        </form>
+                    </div>
+                `}
+                
+                <div style="margin-top: 32px;">
+                    <a href="dashboard.html" class="btn btn-secondary">Жеке кабинетке оралу</a>
+                </div>
+            `;
+            
+            if (!submission || submission.grade === null) {
+                const form = document.getElementById('assignmentForm');
+                if (form) {
+                    form.addEventListener('submit', handleSubmit);
+                }
+            }
+        }
+        
+        let selectedFile = null;
+        
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                selectedFile = file;
+                document.getElementById('fileName').textContent = file.name;
+            }
+        }
+        
+        async function handleSubmit(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Жіберілуде...';
+            
+            try {
+                const answerText = document.getElementById('answerText').value;
+                let fileUrl = null;
+                
+                if (selectedFile) {
+                    // Файл жүктеу (егер upload API бар болса)
+                    const formData = new FormData();
+                    formData.append('file', selectedFile);
+                    
+                    const uploadResponse = await fetch('/api/upload', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: formData
+                    });
+                    
+                    if (uploadResponse.ok) {
+                        const uploadData = await uploadResponse.json();
+                        fileUrl = uploadData.file_url || uploadData.url;
+                    }
+                }
+                
+                await submitAssignment(currentAssignment.id, answerText, fileUrl);
+                
+                alert('Тапсырма сәтті жіберілді!');
+                location.reload();
+            } catch (error) {
+                console.error('Жіберу қатесі:', error);
+                alert('Қате орын алды. Қайталап көріңіз.');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        document.addEventListener('DOMContentLoaded', loadAssignment);
+    </script>
+</body>
+</html>
+

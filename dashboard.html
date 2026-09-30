@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="kz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ENT-Bilim жеке кабинет — Математика және Информатика сабақтары">
+    <title>Жеке кабинет — ENT-Bilim</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .dashboard-container {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+        
+        /* Layout с боковой панелью */
+        .dashboard-layout {
+            display: flex;
+            gap: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Боковая панель */
+        .dashboard-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: var(--bg-white);
+            border-radius: var(--radius-xl);
+            padding: 32px 24px;
+            box-shadow: var(--shadow-md);
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+        
+        .sidebar-header {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--bg-gray-100);
+        }
+        
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .dashboard-welcome {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Навигация в боковой панели */
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .sidebar-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: none;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            text-align: left;
+            width: 100%;
+        }
+        
+        .sidebar-nav-item:hover {
+            background: var(--bg-gray-50);
+            color: var(--primary-color);
+        }
+        
+        .sidebar-nav-item.active {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            color: var(--primary-color);
+        }
+        
+        .nav-icon {
+            font-size: 1.5rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .nav-text {
+            flex: 1;
+        }
+        
+        /* Основной контент */
+        .dashboard-main {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .content-header {
+            margin-bottom: 32px;
+        }
+        
+        .content-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+        
+        .subjects-tabs {
+            display: flex;
+            gap: 16px;
+            border-bottom: 2px solid var(--bg-gray-200);
+        }
+        
+        .subject-tab {
+            padding: 16px 24px;
+            background: none;
+            border: none;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all var(--transition-base);
+        }
+        
+        .subject-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .subject-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        
+        .lesson-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .lesson-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 16px;
+        }
+        
+        .lesson-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .lesson-card-subject {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .lesson-card-subject.math {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+        }
+        
+        .lesson-card-subject.informatics {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+        
+        .lesson-card-description {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        
+        .lesson-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .lesson-progress {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .lesson-status {
+            padding: 6px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .lesson-status.completed {
+            background: #d1fae5;
+            color: #059669;
+        }
+        
+        .lesson-status.in-progress {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+        
+        .lesson-status.not-started {
+            background: var(--bg-gray-100);
+            color: var(--text-secondary);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-secondary);
+        }
+        
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 24px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-secondary);
+        }
+        
+        .loading-spinner {
+            border: 4px solid var(--bg-gray-200);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 24px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Статистика карточки */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        
+        .stat-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all var(--transition-base);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: var(--radius-lg);
+        }
+        
+        .stat-content {
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        
+        /* Контент вкладок */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Задания */
+        .assignments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        
+        .assignment-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+        }
+        
+        .assignment-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .assignment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 16px;
+        }
+        
+        .assignment-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .assignment-deadline {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        .assignment-deadline.urgent {
+            color: #ef4444;
+            font-weight: 600;
+        }
+        
+        .assignment-status {
+            padding: 6px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .assignment-status.new {
+            background: var(--bg-gray-100);
+            color: var(--text-secondary);
+        }
+        
+        .assignment-status.submitted {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+        
+        .assignment-status.graded {
+            background: #d1fae5;
+            color: #059669;
+        }
+        
+        .assignment-grade {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 8px;
+        }
+        
+        /* Прогресс секция */
+        .progress-section {
+            background: var(--bg-white);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
+        }
+        
+        .progress-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+        
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--bg-gray-100);
+        }
+        
+        .progress-item:last-child {
+            border-bottom: none;
+        }
+        
+        .progress-item-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .progress-bar-container {
+            flex: 1;
+            margin: 0 16px;
+            height: 8px;
+            background: var(--bg-gray-100);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: var(--radius-full);
+            transition: width 0.3s ease;
+        }
+        
+        .progress-percent {
+            font-weight: 600;
+            color: var(--text-secondary);
+            min-width: 50px;
+            text-align: right;
+        }
+        
+        @media (max-width: 1024px) {
+            .dashboard-layout {
+                flex-direction: column;
+            }
+            
+            .dashboard-sidebar {
+                width: 100%;
+                position: static;
+            }
+            
+            .sidebar-nav {
+                flex-direction: row;
+                overflow-x: auto;
+            }
+            
+            .sidebar-nav-item {
+                white-space: nowrap;
+                min-width: fit-content;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .assignments-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-container {
+                padding: 100px 0 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-text">ENT-<span class="logo-accent">Bilim</span></span>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Басты бет</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link active">Жеке кабинет</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contacts.html" class="nav-link">Байланыс</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="theme-icon theme-icon-light">☀️</span>
+                        <span class="theme-icon theme-icon-dark">🌙</span>
+                    </button>
+                    
+                    <div id="userInfo" style="display: flex; gap: 12px; align-items: center;">
+                        <span id="userName"></span>
+                        <button class="btn btn-secondary" onclick="logout()">Шығу</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="dashboard-container">
+        <div class="dashboard-layout">
+            <!-- Боковая панель -->
+            <aside class="dashboard-sidebar">
+                <div class="sidebar-header">
+                    <h2 data-translate="dashboard_title">Жеке кабинет</h2>
+                    <p class="dashboard-welcome">
+                        <span data-translate="dashboard_welcome">Қош келдіңіз</span>, 
+                        <span id="userNameHeader"></span>!
+                    </p>
+                    <button id="returnToAdminBtn" onclick="returnToAdmin()" style="display: none; margin-top: 16px; padding: 10px 16px; background: #9b59b6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%;">
+                        ← Админ панеліне оралу
+                    </button>
+                </div>
+                
+                <nav class="sidebar-nav" id="sidebarNav">
+                    <!-- Навигация для учеников -->
+                    <button class="sidebar-nav-item active" data-tab="videos" onclick="switchTab('videos')">
+                        <span class="nav-icon">📹</span>
+                        <span class="nav-text">Видео сабақтар</span>
+                    </button>
+                    <button class="sidebar-nav-item" data-tab="assignments" onclick="switchTab('assignments')">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-text">Тапсырмалар</span>
+                    </button>
+                    <button class="sidebar-nav-item" data-tab="tests" onclick="switchTab('tests')">
+                        <span class="nav-icon">📋</span>
+                        <span class="nav-text">Тесттер</span>
+                    </button>
+                    <button class="sidebar-nav-item" data-tab="progress" onclick="switchTab('progress')">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-text">Прогресс</span>
+                    </button>
+                    
+                    <!-- Навигация для учителей (скрыта по умолчанию) -->
+                    <div id="teacherNav" style="display: none;">
+                        <button class="sidebar-nav-item active" data-tab="my-videos" onclick="switchTab('my-videos')">
+                            <span class="nav-icon">📹</span>
+                            <span class="nav-text">Менің видеолар</span>
+                        </button>
+                        <button class="sidebar-nav-item" data-tab="my-assignments" onclick="switchTab('my-assignments')">
+                            <span class="nav-icon">📝</span>
+                            <span class="nav-text">Менің тапсырмалар</span>
+                        </button>
+                        <button class="sidebar-nav-item" data-tab="my-tests" onclick="switchTab('my-tests')">
+                            <span class="nav-icon">📋</span>
+                            <span class="nav-text">Менің тесттер</span>
+                        </button>
+                        <button class="sidebar-nav-item" data-tab="submissions" onclick="switchTab('submissions')">
+                            <span class="nav-icon">📤</span>
+                            <span class="nav-text">Жіберулер</span>
+                        </button>
+                        <button class="sidebar-nav-item" data-tab="teacher-stats" onclick="switchTab('teacher-stats')">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Статистика</span>
+                        </button>
+                    </div>
+                </nav>
+            </aside>
+            
+            <!-- Основной контент -->
+            <main class="dashboard-main">
+                <!-- Статистика карточки -->
+                <div id="statsContainer" class="stats-grid" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-icon">📹</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="statVideosWatched">0</div>
+                            <div class="stat-label">Көрілген сабақтар</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="statVideosCompleted">0</div>
+                            <div class="stat-label">Аяқталған сабақтар</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="statAssignmentsDone">0</div>
+                            <div class="stat-label">Орындалған тапсырмалар</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="statAverageGrade">-</div>
+                            <div class="stat-label">Орташа балл</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Контент вкладок -->
+                <div id="tabContent">
+                    <!-- Вкладка Видео -->
+                    <div id="videosTab" class="tab-content active">
+                        <div class="content-header">
+                            <h2>Видео сабақтар</h2>
+                            <div class="subjects-tabs">
+                                <button class="subject-tab active" data-subject="all" onclick="filterLessons('all')">
+                                    Барлығы
+                                </button>
+                                <button class="subject-tab" data-subject="mathematics" onclick="filterLessons('mathematics')">
+                                    <span data-translate="dashboard_math">Математика</span>
+                                </button>
+                                <button class="subject-tab" data-subject="informatics" onclick="filterLessons('informatics')">
+                                    <span data-translate="dashboard_informatics">Информатика</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="lessonsContainer">
+                            <div class="loading">
+                                <div class="loading-spinner"></div>
+                                <p>Сабақтар жүктелуде...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Вкладка Тапсырмалар -->
+                    <div id="assignmentsTab" class="tab-content">
+                        <div class="content-header">
+                            <h2>Тапсырмалар</h2>
+                        </div>
+                        <div id="assignmentsContainer">
+                            <div class="loading">
+                                <div class="loading-spinner"></div>
+                                <p>Тапсырмалар жүктелуде...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Вкладка Тесты -->
+                    <div id="testsTab" class="tab-content">
+                        <div class="content-header">
+                            <h2>Тесттер</h2>
+                        </div>
+                        <div id="testsContainer">
+                            <div class="loading">
+                                <div class="loading-spinner"></div>
+                                <p>Тесттер жүктелуде...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Вкладка Прогресс -->
+                    <div id="progressTab" class="tab-content">
+                        <div class="content-header">
+                            <h2>Прогресс және статистика</h2>
+                        </div>
+                        <div id="progressContainer">
+                            <div class="loading">
+                                <div class="loading-spinner"></div>
+                                <p>Прогресс жүктелуде...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Вкладки для учителя -->
+                    <!-- Мои видео -->
+                    <div id="my-videosTab" class="tab-content" style="display: none;">
+                        <div class="content-header">
+                            <h2>Менің видеолар</h2>
+                            <button class="btn btn-primary" onclick="openVideoModal()" style="margin-left: auto;">
+                                + Видео қосу
+                            </button>
+                        </div>
+                        <div id="myVideosContainer">
+                            <div class="loading">
+                                <div class="loading-spinner"></div>
+                                <p>Видеолар жүктелуде...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Мои задания -->
+                    <div id="my-assignmentsTab" class="tab-content" style="display: none;">
+                        <div class="content-header">
+                            <h2>Менің тапсырмалар</h2>
+                            <button class="btn btn-primary" onclick="openAssignmentModal()" style="margin-left: auto;">
+                                + Тапсырма қосу
+                            </button>
+                        </div>
+                        <div id="myAssignmentsContainer">
+                            <div class="loading">
+                                <div class="loading-spinner"></div>
+                                <p>Тапсырмалар жүктелуде...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Мои тесты -->
+                    <div id="my-testsTab" class="tab-content" style="display: none;">
+                        <div class="content-header">
+                            <h2>Менің тесттер</h2>
+                            <button class="btn btn-primary" onclick="openTestModal()" style="margin-left: auto;">
+                                + Тест қосу
+                            </button>
+                        </div>
+                        <div id="myTestsContainer">
+                            <div class="loading">
+                                <div class="loading-spinner"></div>
+                                <p>Тесттер жүктелуде...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Жіберулер (выполненные задания учеников) -->
+                    <div id="submissionsTab" class="tab-content" style="display: none;">
+                        <div class="content-header">
+                            <h2>Оқушылардың жіберулері</h2>
+                            <div style="display: flex; gap: 12px; margin-left: auto;">
+                                <select id="submissionFilter" onchange="loadSubmissions()" style="padding: 8px 12px; border-radius: 8px; border: 2px solid var(--bg-gray-200);">
+                                    <option value="all">Барлығы</option>
+                                    <option value="ungraded">Бағаланбаған</option>
+                                    <option value="graded">Бағаланған</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="submissionsContainer">
+                            <div class="loading">
+                                <div class="loading-spinner"></div>
+                                <p>Жіберулер жүктелуде...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Статистика учителя -->
+                    <div id="teacher-statsTab" class="tab-content" style="display: none;">
+                        <div class="content-header">
+                            <h2>Статистика</h2>
+                        </div>
+                        <div id="teacherStatsContainer">
+                            <div class="loading">
+                                <div class="loading-spinner"></div>
+                                <p>Статистика жүктелуде...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Модальные окна для учителя -->
+    <div id="videoModal" class="modal" style="display: none;" onclick="if(event.target === this) closeVideoModal()">
+        <div class="modal-content" style="max-width: 600px;" onclick="event.stopPropagation()">
+            <h2 id="videoModalTitle">Видео қосу</h2>
+            <form id="videoForm" onsubmit="saveVideo(event)">
+                <div class="form-group">
+                    <label>Атауы *</label>
+                    <input type="text" id="videoTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Сипаттама</label>
+                    <textarea id="videoDescription" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>YouTube URL *</label>
+                    <input type="url" id="videoUrl" required placeholder="https://youtube.com/watch?v=...">
+                </div>
+                <div class="form-group">
+                    <label>Пән *</label>
+                    <select id="videoSubject" required>
+                        <option value="">Таңдаңыз</option>
+                        <option value="mathematics">Математика</option>
+                        <option value="informatics">Информатика</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeVideoModal()">Болдырмау</button>
+                    <button type="submit" class="btn btn-primary">Сақтау</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="assignmentModal" class="modal" style="display: none;" onclick="if(event.target === this) closeAssignmentModal()">
+        <div class="modal-content" style="max-width: 600px;" onclick="event.stopPropagation()">
+            <h2 id="assignmentModalTitle">Тапсырма қосу</h2>
+            <form id="assignmentForm" onsubmit="saveAssignment(event)">
+                <div class="form-group">
+                    <label>Атауы *</label>
+                    <input type="text" id="assignmentTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Сипаттама</label>
+                    <textarea id="assignmentDescription" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Файл URL (қосымша)</label>
+                    <input type="url" id="assignmentFileUrl" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label>Пән *</label>
+                    <select id="assignmentSubject" required>
+                        <option value="">Таңдаңыз</option>
+                        <option value="mathematics">Математика</option>
+                        <option value="informatics">Информатика</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Видео (қосымша)</label>
+                    <select id="assignmentVideo">
+                        <option value="">Видео таңдамау</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Мерзімі</label>
+                    <input type="datetime-local" id="assignmentDeadline">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAssignmentModal()">Болдырмау</button>
+                    <button type="submit" class="btn btn-primary">Сақтау</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="submissionModal" class="modal" style="display: none;" onclick="if(event.target === this) closeSubmissionModal()">
+        <div class="modal-content" style="max-width: 700px;" onclick="event.stopPropagation()">
+            <h2 id="submissionModalTitle">Жіберу</h2>
+            <div id="submissionContent"></div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeSubmissionModal()">Жабу</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно для создания теста -->
+    <div id="testModal" class="modal" style="display: none;" onclick="if(event.target === this) closeTestModal()">
+        <div class="modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
+            <h2 id="testModalTitle">Тест қосу</h2>
+            <form id="testForm" onsubmit="saveTest(event)">
+                <div class="form-group">
+                    <label>Атауы *</label>
+                    <input type="text" id="testTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Сипаттама</label>
+                    <textarea id="testDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Пән *</label>
+                    <select id="testSubject" required>
+                        <option value="">Таңдаңыз</option>
+                        <option value="mathematics">Математика</option>
+                        <option value="informatics">Информатика</option>
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                        <label>Уақыт шегі (минут)</label>
+                        <input type="number" id="testTimeLimit" min="1" placeholder="30">
+                    </div>
+                    <div class="form-group">
+                        <label>Өту баллы (%)</label>
+                        <input type="number" id="testPassingScore" min="0" max="100" placeholder="60">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="testIsMain" checked> Басты тест (оқушыларға көрінеді)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="testIsActive" checked> Белсенді
+                    </label>
+                </div>
+                
+                <div style="margin: 24px 0; padding: 16px; background: var(--bg-gray-50); border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <h3 style="margin: 0;">Сұрақтар</h3>
+                        <button type="button" class="btn btn-secondary" onclick="addQuestion()" style="padding: 8px 16px;">+ Сұрақ қосу</button>
+                    </div>
+                    <div id="questionsContainer"></div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeTestModal()">Болдырмау</button>
+                    <button type="submit" class="btn btn-primary">Сақтау</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Модальное окно для просмотра результатов теста -->
+    <div id="testResultsModal" class="modal" style="display: none;" onclick="if(event.target === this) closeTestResultsModal()">
+        <div class="modal-content" style="max-width: 900px; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
+            <h2 id="testResultsModalTitle">Тест нәтижелері</h2>
+            <div id="testResultsContent"></div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeTestResultsModal()">Жабу</button>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--bg-gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+        .teacher-video-card,
+        .teacher-assignment-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--bg-gray-100);
+        }
+        .teacher-video-card h3,
+        .teacher-assignment-card h3 {
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+        .submission-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--primary-color);
+        }
+        .submission-card.ungraded {
+            border-left-color: #f59e0b;
+        }
+        .submission-card.graded {
+            border-left-color: #10b981;
+        }
+    </style>
+    
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="kz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ENT-Bilim — Математика және Информатика бойынша ҰБТ-ға дайындалуға арналған онлайн платформа. Тәжірибелі оқытушылармен дайындалыңыз.">
+    <meta name="keywords" content="ҰБТ, ҰБТ дайындық, математика ҰБТ, информатика ҰБТ, онлайн курстар Қазақстан">
+    <meta name="author" content="ENT-Bilim">
+    
+    <meta property="og:title" content="ENT-Bilim — Математика және Информатика бойынша ҰБТ-ға дайындық">
+    <meta property="og:description" content="Математика және Информатика бойынша ҰБТ-ға дайындалуға арналған онлайн платформа">
+    <meta property="og:type" content="website">
+    
+    <title>ENT-Bilim — Математика және Информатика бойынша ҰБТ-ға дайындық | Қазақстан оқушыларына онлайн курстар</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-text">ENT-<span class="logo-accent">Bilim</span></span>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item nav-item-dropdown">
+                        <a href="#" class="nav-link nav-link-dropdown" data-translate="nav_courses">
+                            Курстар
+                            <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#programs" class="dropdown-link" data-translate="dropdown_math">Математика</a></li>
+                            <li><a href="#programs" class="dropdown-link" data-translate="dropdown_informatics">Информатика</a></li>
+                            <li><a href="#programs" class="dropdown-link" data-translate="dropdown_combined">Математика + Информатика</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="contacts.html" class="nav-link" data-translate="nav_contacts">Байланыс</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="theme-icon theme-icon-light">☀️</span>
+                        <span class="theme-icon theme-icon-dark">🌙</span>
+                    </button>
+                    
+                    <div id="authButtons" style="display: flex; gap: 12px; align-items: center;">
+                        <a href="login.html" class="btn btn-secondary" data-translate="nav_login">Кіру</a>
+                        <a href="register.html" class="btn btn-primary" data-translate="nav_register">Тіркелу</a>
+                    </div>
+                    
+                    <a href="#contact" class="btn btn-header" data-translate="nav_help_button">
+                        Таңдауға көмектесу
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Бегущая строка (Ticker) -->
+    <div class="ticker-container">
+        <div class="ticker-wrapper">
+            <div class="ticker-content">
+                <span class="ticker-item">🎓 ҰБТ-ға дайындық басталды! Бүгін тіркелгендерге 50% жеңілдік</span>
+                <span class="ticker-item">📚 Математика және Информатика бойынша тәжірибелі оқытушылар</span>
+                <span class="ticker-item">⭐ 10 000+ оқушы бізбен табысқа жетті</span>
+                <span class="ticker-item">💻 Онлайн сабақтар - қалаған жеріңізден оқыңыз</span>
+                <span class="ticker-item">🎯 Грантқа түсу мүмкіндігіңізді арттырыңыз</span>
+            </div>
+            <div class="ticker-content" aria-hidden="true">
+                <span class="ticker-item">🎓 ҰБТ-ға дайындық басталды! Бүгін тіркелгендерге 50% жеңілдік</span>
+                <span class="ticker-item">📚 Математика және Информатика бойынша тәжірибелі оқытушылар</span>
+                <span class="ticker-item">⭐ 10 000+ оқушы бізбен табысқа жетті</span>
+                <span class="ticker-item">💻 Онлайн сабақтар - қалаған жеріңізден оқыңыз</span>
+                <span class="ticker-item">🎯 Грантқа түсу мүмкіндігіңізді арттырыңыз</span>
+            </div>
+        </div>
+    </div>
+    
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left" data-aos="fade-right">
+                    <div class="promo-badge">
+                        <span class="promo-icon">📚</span>
+                        <span class="promo-text" data-translate="hero_promo">Білім — ең құнды байлық</span>
+                    </div>
+                    
+                    <h1 class="hero-title" data-translate="hero_title">
+                        ҰБТ-ға Математика және Информатика бойынша онлайн дайындалыңыз
+                    </h1>
+                    
+                    <p class="hero-subtitle" data-translate="hero_subtitle">
+                        ENT-Bilim — арман ЖОО-ға түсу мүмкіндігіңіз. Математика мен Информатика пәндерін тәжірибелі педагогтармен онлайн үйреніңіз.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#programs" class="btn btn-primary btn-large" data-translate="hero_btn_start">
+                            Начать обучение
+                        </a>
+                        <a href="#contact" class="btn btn-secondary btn-large" data-translate="hero_btn_consult">
+                            Получить консультацию
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10,000+</div>
+                            <div class="stat-label" data-translate="hero_stat_students">Учеников</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label" data-translate="hero_stat_success">Успешность</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">+25</div>
+                            <div class="stat-label" data-translate="hero_stat_score">Баллов прирост</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-right" data-aos="fade-left" data-aos-delay="200">
+                    <div class="hero-form-wrapper">
+                        <div class="hero-form">
+                            <h3 class="form-title" data-translate="form_hero_title">
+                                Узнай, какие скидки на обучение сейчас действуют
+                            </h3>
+                            <form class="consultation-form" id="heroForm">
+                                <div class="form-group">
+                                    <input type="text" class="form-input" placeholder="Ваше имя" data-translate-placeholder="form_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" data-translate-placeholder="form_phone" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block" data-translate="form_submit">
+                                    Отправить заявку
+                                </button>
+                                <p class="form-note" data-translate="form_privacy">
+                                    Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="universities" id="universities">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="universities_title">С нами готовятся более 10 000 учеников!</h2>
+                <p class="section-subtitle" data-translate="universities_subtitle">
+                    Наши выпускники поступают в лучшие университеты Казахстана
+                </p>
+            </div>
+            
+            <div class="universities-logos">
+                <a href="https://www.enu.kz/" target="_blank" rel="noopener noreferrer" class="university-logo university-logo-large">
+                    <img src="images/universities/enu.jpg" alt="ЕНУ им. Л.Н. Гумилева" class="university-image">
+                </a>
+                <a href="https://www.kaznu.kz/" target="_blank" rel="noopener noreferrer" class="university-logo">
+                    <img src="images/universities/kaznu.jpg" alt="КазНУ им. аль-Фараби" class="university-image">
+                </a>
+                <a href="https://www.kbtu.kz/" target="_blank" rel="noopener noreferrer" class="university-logo">
+                    <img src="images/universities/kbtu.jpg" alt="КБТУ" class="university-image">
+                </a>
+                <a href="https://www.kaznmu.kz/" target="_blank" rel="noopener noreferrer" class="university-logo">
+                    <img src="images/universities/kaznmu.jpg" alt="КазНМУ им. С.Д. Асфендиярова" class="university-image">
+                </a>
+                <a href="https://www.kimep.kz/" target="_blank" rel="noopener noreferrer" class="university-logo">
+                    <img src="images/universities/kimep.jpg" alt="КИМЭП" class="university-image">
+                </a>
+            </div>
+            
+            <div class="universities-text">
+                <p data-translate="universities_text">
+                    Мы гордимся нашими учениками, которые успешно поступили в престижные вузы и продолжают строить свою карьеру
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="programs" id="programs">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title" data-translate="programs_title">Наши программы подготовки</h2>
+                <p class="section-subtitle" data-translate="programs_subtitle">
+                    Выбери подходящий курс и начни готовиться к ЕНТ уже сегодня
+                </p>
+            </div>
+            
+            <div class="programs-grid">
+                <div class="program-card program-card-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="program-icon">🔢</div>
+                    <h3 class="program-title" data-translate="program_1_title">Математика</h3>
+                    <p class="program-description" data-translate="program_1_desc">
+                        Алгебра, геометрия, математикалық сауаттылық. ҰБТ тапсырмаларын шешу және типтік тапсырмаларды талдау.
+                    </p>
+                    <ul class="program-features">
+                        <li data-translate="program_1_feat_1">Алгебра мен геометрияны тереңдете оқыту</li>
+                        <li data-translate="program_1_feat_2">ҰБТ тапсырмаларын шешу әдістері</li>
+                        <li data-translate="program_1_feat_3">Өткен жылдардың тесттерін талдау</li>
+                        <li data-translate="program_1_feat_4">Жеке кеңестер мен қолдау</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" data-translate="program_btn">Бағдарламаны таңдау</a>
+                </div>
+                
+                <div class="program-card program-card-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="program-icon">💻</div>
+                    <h3 class="program-title" data-translate="program_2_title">Информатика</h3>
+                    <p class="program-description" data-translate="program_2_desc">
+                        Бағдарламалау, алгоритмдер, деректер базасы. Практикалық тапсырмалар және ҰБТ-ға дайындық.
+                    </p>
+                    <ul class="program-features">
+                        <li data-translate="program_2_feat_1">Бағдарламалау негіздері</li>
+                        <li data-translate="program_2_feat_2">Алгоритмдер мен деректер құрылымдары</li>
+                        <li data-translate="program_2_feat_3">Практикалық тапсырмалар</li>
+                        <li data-translate="program_2_feat_4">ҰБТ-ға арналған дайындық</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" data-translate="program_btn">Бағдарламаны таңдау</a>
+                </div>
+                
+                <div class="program-card program-card-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="program-icon">🎯</div>
+                    <h3 class="program-title" data-translate="program_3_title">Математика + Информатика</h3>
+                    <p class="program-description" data-translate="program_3_desc">
+                        Екі пән бірге. Комплексті дайындық және екі курсты сатып алғанда жеңілдік.
+                    </p>
+                    <ul class="program-features">
+                        <li data-translate="program_3_feat_1">Екі пән бірге оқыту</li>
+                        <li data-translate="program_3_feat_2">Интеграцияланған бағдарлама</li>
+                        <li data-translate="program_3_feat_3">Жеке куратор</li>
+                        <li data-translate="program_3_feat_4">Екі курсты сатып алғанда жеңілдік</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" data-translate="program_btn">Бағдарламаны таңдау</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Новостная лента -->
+    <section class="news-section" id="news">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title" data-translate="news_title">Жаңалықтар</h2>
+                <p class="section-subtitle" data-translate="news_subtitle">
+                    ҰБТ-ға дайындық бойынша соңғы жаңалықтар мен хабарландырулар
+                </p>
+            </div>
+            
+            <div class="news-grid" data-aos="fade-up" data-aos-delay="200">
+                <article class="news-card">
+                    <div class="news-date">
+                        <span class="news-day">1</span>
+                        <span class="news-month">Қаңтар</span>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">ҰБТ-ға тіркелу басталды</h3>
+                        <p class="news-excerpt">Уақытыңызды жіберіп алмаңыз! Қаңтар ҰБТ-ға тіркелу ашық. Тіркеліп алыңыз</p>
+                        <a href="https://app.testcenter.kz/auth" target="_blank" rel="noopener noreferrer" class="news-link">Тіркелу →</a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-date">
+                        <span class="news-day">5</span>
+                        <span class="news-month">Қаңтар</span>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">ҰБТ-2025: Жаңа тапсырмалар</h3>
+                        <p class="news-excerpt">2025 жылғы ҰБТ-ға арналған жаңа тапсырмалар мен тесттер қосылды. Ең соңғы өзгерістер мен ережелерді біліңіз.</p>
+                        <a href="https://www.nur.kz/family/school/1792883-ent-v-kazahstane-osobennosti-predmety-sroki/" target="_blank" rel="noopener noreferrer" class="news-link">Оқу →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title" data-translate="testimonials_title">Отзывы учеников, поступивших в вузы</h2>
+                <p class="section-subtitle" data-translate="testimonials_subtitle">
+                    Тысячи выпускников уже достигли своих целей с ENT-Bilim
+                </p>
+            </div>
+            
+            <div class="swiper testimonials-slider" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper">
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar">
+                                <img src="images/testimonials/alikhan-sadykov.jpg" alt="Әлихан Садыков" class="avatar-image">
+                            </div>
+                            <div class="testimonial-content">
+                                <div class="testimonial-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <p class="testimonial-text" data-translate="testimonial_1_text">
+                                    "Благодаря ENT-Bilim я поступил в КазНУ на грант! Преподаватели объясняют сложные темы простым языком, а пробные тесты помогли не волноваться на экзамене."
+                                </p>
+                                <div class="testimonial-author">
+                                    <div class="author-name" data-translate="testimonial_1_name">Алихан Садыков</div>
+                                    <div class="author-info" data-translate="testimonial_1_info">КазНУ им. аль-Фараби, Математика</div>
+                                    <div class="author-score" data-translate="testimonial_1_score">Балл ЕНТ: 118</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar">
+                                <img src="images/testimonials/aygerim-nurlanova.jpg" alt="Айгерим Нурланова" class="avatar-image">
+                            </div>
+                            <div class="testimonial-content">
+                                <div class="testimonial-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <p class="testimonial-text" data-translate="testimonial_2_text">
+                                    "Я занималась всего 4 месяца, но мой результат вырос на 30 баллов! Кураторы всегда на связи, материалы понятные. Очень довольна!"
+                                </p>
+                                <div class="testimonial-author">
+                                    <div class="author-name" data-translate="testimonial_2_name">Айгерим Нурланова</div>
+                                    <div class="author-info" data-translate="testimonial_2_info">КБТУ, Информационные системы</div>
+                                    <div class="author-score" data-translate="testimonial_2_score">Балл ЕНТ: 115</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar">
+                                <img src="images/testimonials/yermek-bekzhanov.jpg" alt="Ермек Бекжанов" class="avatar-image">
+                            </div>
+                            <div class="testimonial-content">
+                                <div class="testimonial-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <p class="testimonial-text" data-translate="testimonial_3_text">
+                                    "ENT-Bilim — это не просто курсы, это целая система подготовки. Мне понравилось, что можно заниматься в любое время и пересматривать уроки."
+                                </p>
+                                <div class="testimonial-author">
+                                    <div class="author-name" data-translate="testimonial_3_name">Ермек Бекжанов</div>
+                                    <div class="author-info" data-translate="testimonial_3_info">ҚБТУ, Компьютерлік ғылымдар</div>
+                                    <div class="author-score" data-translate="testimonial_3_score">ҰБТ ұпайы: 122</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar">
+                                <img src="images/testimonials/dinara-saparova.jpg" alt="Динара Сапарова" class="avatar-image">
+                            </div>
+                            <div class="testimonial-content">
+                                <div class="testimonial-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <p class="testimonial-text" data-translate="testimonial_4_text">
+                                    "Живу в небольшом городе, где нет хороших репетиторов. ENT-Bilim дал мне возможность учиться у лучших преподавателей страны онлайн!"
+                                </p>
+                                <div class="testimonial-author">
+                                    <div class="author-name" data-translate="testimonial_4_name">Динара Сапарова</div>
+                                    <div class="author-info" data-translate="testimonial_4_info">ҚазҰУ, Математика</div>
+                                    <div class="author-score" data-translate="testimonial_4_score">ҰБТ ұпайы: 120</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="swiper-pagination"></div>
+                
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="advantages" id="advantages">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title" data-translate="advantages_title">Почему именно ENT-Bilim?</h2>
+                <p class="section-subtitle" data-translate="advantages_subtitle">
+                    Мы создали лучшую платформу для подготовки к ЕНТ в Казахстане
+                </p>
+            </div>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="advantage-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="28" fill="url(#grad1)" opacity="0.2"/>
+                            <path d="M30 15C21.7 15 15 21.7 15 30C15 38.3 21.7 45 30 45C38.3 45 45 38.3 45 30C45 21.7 38.3 15 30 15ZM35 32L28 37V23L35 28V32Z" fill="url(#grad1)"/>
+                            <defs>
+                                <linearGradient id="grad1" x1="15" y1="15" x2="45" y2="45">
+                                    <stop offset="0%" stop-color="#6366f1"/>
+                                    <stop offset="100%" stop-color="#8b5cf6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="advantage-title" data-translate="advantage_1_title">🎓 Поддержка и наставники</h3>
+                    <p class="advantage-description" data-translate="advantage_1_desc">
+                        С тобой реальные преподаватели и менторы. Они ответят на любой вопрос и помогут разобраться в сложных темах.
+                    </p>
+                    <ul class="advantage-list">
+                        <li data-translate="advantage_1_point_1">Личный куратор для каждого ученика</li>
+                        <li data-translate="advantage_1_point_2">Обратная связь в течение 24 часов</li>
+                        <li data-translate="advantage_1_point_3">Консультации с преподавателями</li>
+                    </ul>
+                </div>
+                
+                <div class="advantage-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="advantage-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="28" fill="url(#grad2)" opacity="0.2"/>
+                            <path d="M42 17H18C16.3 17 15 18.3 15 20V40C15 41.7 16.3 43 18 43H42C43.7 43 45 41.7 45 40V20C45 18.3 43.7 17 42 17ZM42 40H18V20H42V40Z" fill="url(#grad2)"/>
+                            <defs>
+                                <linearGradient id="grad2" x1="15" y1="17" x2="45" y2="43">
+                                    <stop offset="0%" stop-color="#ec4899"/>
+                                    <stop offset="100%" stop-color="#f43f5e"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="advantage-title" data-translate="advantage_2_title">💻 Дистанционно и удобно</h3>
+                    <p class="advantage-description" data-translate="advantage_2_desc">
+                        Занимайся где угодно и когда удобно. Все материалы доступны 24/7 с любого устройства.
+                    </p>
+                    <ul class="advantage-list">
+                        <li data-translate="advantage_2_point_1">Учись из любой точки Казахстана</li>
+                        <li data-translate="advantage_2_point_2">Гибкий график занятий</li>
+                        <li data-translate="advantage_2_point_3">Доступ с компьютера и телефона</li>
+                    </ul>
+                </div>
+                
+                <div class="advantage-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="advantage-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="28" fill="url(#grad3)" opacity="0.2"/>
+                            <path d="M30 15L35 25H40L35 30L37 40L30 35L23 40L25 30L20 25H25L30 15Z" fill="url(#grad3)"/>
+                            <defs>
+                                <linearGradient id="grad3" x1="20" y1="15" x2="40" y2="40">
+                                    <stop offset="0%" stop-color="#10b981"/>
+                                    <stop offset="100%" stop-color="#059669"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="advantage-title" data-translate="advantage_3_title">📊 Результаты</h3>
+                    <p class="advantage-description" data-translate="advantage_3_desc">
+                        Наши ученики стабильно показывают +20–30 баллов к прошлым результатам и успешно поступают на гранты.
+                    </p>
+                    <ul class="advantage-list">
+                        <li data-translate="advantage_3_point_1">98% учеников поступают в вузы</li>
+                        <li data-translate="advantage_3_point_2">Средний прирост баллов +25</li>
+                        <li data-translate="advantage_3_point_3">Пробные тесты каждую неделю</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="stats-section" data-aos="fade-up" data-aos-delay="400">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number-large counter" data-target="10000">0</div>
+                        <div class="stat-label-large" data-translate="stat_students">Выпускников</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number-large counter" data-target="98">0</div>
+                        <div class="stat-label-large" data-translate="stat_success">% Поступили в вузы</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number-large">+<span class="counter" data-target="25">0</span></div>
+                        <div class="stat-label-large" data-translate="stat_improvement">Баллов в среднем</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number-large counter" data-target="50">0</div>
+                        <div class="stat-label-large" data-translate="stat_teachers">+ Преподавателей</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="why-ent" id="why-ent">
+        <div class="container">
+            <div class="why-ent-content">
+                <div class="why-ent-left" data-aos="fade-right">
+                    <div class="section-label" data-translate="why_ent_label">Твое будущее</div>
+                    <h2 class="section-title" data-translate="why_ent_title">Почему именно ЕНТ?</h2>
+                    <p class="why-ent-text" data-translate="why_ent_text_1">
+                        ЕНТ открывает путь в лучшие университеты Казахстана. Это твой шанс получить грант и учиться бесплатно в престижном вузе.
+                    </p>
+                    <p class="why-ent-text" data-translate="why_ent_text_2">
+                        Мы поможем тебе достичь нужного балла, чтобы поступить на специальность мечты. С нашей поддержкой ты сможешь уверенно идти к своей цели.
+                    </p>
+                    
+                    <div class="why-ent-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-number">01</div>
+                            <div class="benefit-content">
+                                <h4 class="benefit-title" data-translate="why_ent_benefit_1_title">Грантовое образование</h4>
+                                <p class="benefit-text" data-translate="why_ent_benefit_1_text">Получи возможность учиться бесплатно</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-number">02</div>
+                            <div class="benefit-content">
+                                <h4 class="benefit-title" data-translate="why_ent_benefit_2_title">Престижные вузы</h4>
+                                <p class="benefit-text" data-translate="why_ent_benefit_2_text">Поступи в КазНУ, КБТУ, ЕНУ и другие</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-number">03</div>
+                            <div class="benefit-content">
+                                <h4 class="benefit-title" data-translate="why_ent_benefit_3_title">Будущая карьера</h4>
+                                <p class="benefit-text" data-translate="why_ent_benefit_3_text">Открой двери к успешной профессии</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="why-ent-right" data-aos="fade-left">
+                    <div class="why-ent-image">
+                        <img src="images/why-ent.jpg" alt="Почему ЕНТ?" class="why-ent-photo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="trial-lesson-section" id="trial-lesson">
+        <div class="container">
+            <div class="trial-lesson-card" data-aos="zoom-in">
+                <div class="trial-lesson-content">
+                    <div class="trial-lesson-icon">🎥</div>
+                    <h2 class="trial-lesson-title" data-translate="trial_lesson_title">Хочешь понять, как проходят наши занятия?</h2>
+                    <p class="trial-lesson-description" data-translate="trial_lesson_description">
+                        Посмотри пробный урок и оцени качество обучения!
+                    </p>
+                    <button class="btn btn-white btn-large" id="watchTrialLessonBtn" data-translate="trial_lesson_btn">
+                        Смотреть пробный урок
+                    </button>
+                </div>
+                <div class="trial-lesson-decoration">
+                    <div class="decoration-circle decoration-circle-1"></div>
+                    <div class="decoration-circle decoration-circle-2"></div>
+                    <div class="decoration-circle decoration-circle-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section" id="contact">
+        <div class="cta-background">
+            <div class="cta-gradient"></div>
+        </div>
+        
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-left" data-aos="fade-right">
+                    <h2 class="cta-title" data-translate="cta_title">
+                        Оставь заявку и получи скидку до 50% на курс подготовки к ЕНТ
+                    </h2>
+                    <p class="cta-subtitle" data-translate="cta_subtitle">
+                        Не упусти возможность начать подготовку с лучшими преподавателями Казахстана!
+                    </p>
+                    
+                    <div class="cta-features">
+                        <div class="cta-feature">
+                            <span class="feature-check">✓</span>
+                            <span data-translate="cta_feat_1">Бесплатная консультация</span>
+                        </div>
+                        <div class="cta-feature">
+                            <span class="feature-check">✓</span>
+                            <span data-translate="cta_feat_2">Подбор программы под твои цели</span>
+                        </div>
+                        <div class="cta-feature">
+                            <span class="feature-check">✓</span>
+                            <span data-translate="cta_feat_3">Скидки до 50% при оплате сегодня</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-right" data-aos="fade-left" data-aos-delay="200">
+                    <div class="cta-form-wrapper">
+                        <h3 class="cta-form-title" data-translate="cta_form_title">Получить консультацию</h3>
+                        <form class="cta-form" id="ctaForm">
+                            <div class="form-group">
+                                <input type="text" class="form-input" placeholder="Ваше имя" data-translate-placeholder="form_name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" data-translate-placeholder="form_phone" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-input" placeholder="Email" data-translate-placeholder="form_email">
+                            </div>
+                            <div class="form-group">
+                                <select class="form-select" data-translate-placeholder="form_program">
+                                    <option value="" data-translate="form_select_program">Бағдарламаны таңдаңыз</option>
+                                    <option value="math" data-translate="form_program_math">Математика</option>
+                                    <option value="informatics" data-translate="form_program_informatics">Информатика</option>
+                                    <option value="combined" data-translate="form_program_combined">Математика + Информатика</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-white btn-block" data-translate="form_submit_cta">
+                                Получить консультацию
+                            </button>
+                            <p class="form-note" data-translate="form_privacy">
+                                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column footer-about">
+                    <div class="footer-logo">
+                        <span class="logo-text">ENT-<span class="logo-accent">Bilim</span></span>
+                    </div>
+                    <p class="footer-description" data-translate="footer_description">
+                        Онлайн-платформа для подготовки к ЕНТ по всему Казахстану. Мы помогаем ученикам достичь высоких результатов и поступить в вузы мечты.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://t.me/uto92" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/testcenterkz/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2m-.2 2A3.6 3.6 0 004 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 011.25 1.25A1.25 1.25 0 0117.25 8 1.25 1.25 0 0116 6.75a1.25 1.25 0 011.25-1.25M12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5m0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@testcenter_kz?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0115.54 3h-3.09v12.4a2.59 2.59 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 004.3 1.38V7.3s-1.88.09-3.24-1.48z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading" data-translate="footer_about_title">О нас</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-translate="footer_about_1">О платформе</a></li>
+                        <li><a href="#" data-translate="footer_about_2">Преподаватели</a></li>
+                        <li><a href="#" data-translate="footer_about_3">Отзывы</a></li>
+                        <li><a href="#" data-translate="footer_about_4">Блог</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading" data-translate="footer_courses_title">Курстар</h4>
+                    <ul class="footer-links">
+                        <li><a href="#programs" data-translate="footer_courses_1">Математика</a></li>
+                        <li><a href="#programs" data-translate="footer_courses_2">Информатика</a></li>
+                        <li><a href="#programs" data-translate="footer_courses_3">Математика + Информатика</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading" data-translate="footer_contact_title">Контакты</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <span class="contact-icon">📞</span>
+                            <a href="tel:+77001234567">+7 (700) 123-45-67</a>
+                        </li>
+                        <li>
+                            <span class="contact-icon">✉️</span>
+                            <a href="mailto:info@ent-bilim.kz">info@ent-bilim.kz</a>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📍</span>
+                            <span data-translate="footer_address">г. Астана, проспект Туран 37, офис 205</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright" data-translate="footer_copyright">
+                    © 2025 ENT-Bilim. Все права защищены.
+                </p>
+                <div class="footer-legal">
+                    <a href="#" data-translate="footer_privacy">Политика конфиденциальности</a>
+                    <a href="#" data-translate="footer_terms">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script src="js/translations.js"></script>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
+

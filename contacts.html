@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="kz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ENT-Bilim байланысы — Математика және Информатика бойынша ҰБТ-ға дайындық бойынша кеңес алу үшін бізбен байланысыңыз. Телефон, email, Астанадағы кеңсе мекенжайы.">
+    <meta name="keywords" content="ENT-Bilim байланыс, ENT-Bilim-мен байланысу, ҰБТ кеңесі">
+    <meta name="author" content="ENT-Bilim">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ENT-Bilim байланысы — Бізбен байланысыңыз">
+    <meta property="og:description" content="Сұрақ қойыңыз немесе ҰБТ-ға дайындық бойынша кеңес алуға тіркеліңіз">
+    <meta property="og:type" content="website">
+    
+    <title>Байланыс — ENT-Bilim | Бізбен байланысыңыз</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Contacts Page Specific Styles */
+        .contacts-hero {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .contacts-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #1f2937 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .contacts-hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .contacts-content {
+            padding: 80px 0;
+        }
+        
+        .contacts-grid {
+            /* CSS GRID: Двухколоночная сетка для страницы контактов (информация слева, форма справа) */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .contact-info-block {
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .contact-info-block h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+        }
+        
+        .contact-item {
+            /* FLEXBOX: Выравнивание иконки и текста контактной информации */
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--bg-gray-100);
+        }
+        
+        .contact-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: var(--radius-lg);
+            /* FLEXBOX: Центрирование эмодзи внутри иконки */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .contact-details p,
+        .contact-details a {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .contact-details a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            /* FLEXBOX: Горизонтальное расположение иконок социальных сетей */
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            /* FLEXBOX: Центрирование иконки внутри кнопки */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-gray-100);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            transition: all var(--transition-base);
+        }
+        
+        .social-link:hover {
+            background: var(--gradient-primary);
+            color: var(--text-white);
+            transform: translateY(-2px);
+        }
+        
+        .contact-form-block {
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .contact-form-block h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+        
+        .map-section {
+            padding: 80px 0;
+            background: var(--bg-gray-50);
+        }
+        
+        .map-link-container {
+            padding: 40px 20px;
+        }
+        
+        .map-link-container .btn {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .map-link-container .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        @media (max-width: 1024px) {
+            .contacts-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contacts-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contacts-hero {
+                padding: 100px 0 60px;
+            }
+            
+            .contacts-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .contacts-hero p {
+                font-size: 1rem;
+            }
+            
+            .contact-info-block,
+            .contact-form-block {
+                padding: 28px;
+            }
+            
+            .map-link-container {
+                padding: 30px 15px;
+            }
+            
+            .map-link-container .btn {
+                width: 100%;
+                max-width: 100%;
+                font-size: 14px;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- ======= HEADER / NAVIGATION START ======= -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <!-- LOGO PLACEHOLDER -->
+                <div class="logo">
+                    <!-- LOGO HERE -->
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-text">ENT-<span class="logo-accent">Bilim</span></span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="nav-menu" id="navMenu">
+                    <!-- Курстар with Dropdown -->
+                    <li class="nav-item nav-item-dropdown">
+                        <a href="#" class="nav-link nav-link-dropdown" data-translate="nav_courses">
+                            Курстар
+                            <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#programs" class="dropdown-link" data-translate="dropdown_math">Математика</a></li>
+                            <li><a href="index.html#programs" class="dropdown-link" data-translate="dropdown_informatics">Информатика</a></li>
+                            <li><a href="index.html#programs" class="dropdown-link" data-translate="dropdown_combined">Математика + Информатика</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Байланыс -->
+                    <li class="nav-item">
+                        <a href="contacts.html" class="nav-link active" data-translate="nav_contacts">Байланыс</a>
+                    </li>
+                </ul>
+                
+                <!-- Right Side Menu -->
+                <div class="nav-right">
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="theme-icon theme-icon-light">☀️</span>
+                        <span class="theme-icon theme-icon-dark">🌙</span>
+                    </button>
+                    
+                    <div id="authButtons" style="display: flex; gap: 12px; align-items: center;">
+                        <a href="login.html" class="btn btn-secondary" data-translate="nav_login">Кіру</a>
+                        <a href="register.html" class="btn btn-primary" data-translate="nav_register">Тіркелу</a>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    <a href="index.html#contact" class="btn btn-header" data-translate="nav_help_button">
+                        Таңдауға көмектесу
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <!-- ======= HEADER / NAVIGATION END ======= -->
+    
+    <!-- Бегущая строка (Ticker) -->
+    <div class="ticker-container">
+        <div class="ticker-wrapper">
+            <div class="ticker-content">
+                <span class="ticker-item">🎓 ҰБТ-ға дайындық басталды! Бүгін тіркелгендерге 50% жеңілдік</span>
+                <span class="ticker-item">📚 Математика және Информатика бойынша тәжірибелі оқытушылар</span>
+                <span class="ticker-item">⭐ 10 000+ оқушы бізбен табысқа жетті</span>
+                <span class="ticker-item">💻 Онлайн сабақтар - қалаған жеріңізден оқыңыз</span>
+                <span class="ticker-item">🎯 Грантқа түсу мүмкіндігіңізді арттырыңыз</span>
+            </div>
+            <div class="ticker-content" aria-hidden="true">
+                <span class="ticker-item">🎓 ҰБТ-ға дайындық басталды! Бүгін тіркелгендерге 50% жеңілдік</span>
+                <span class="ticker-item">📚 Математика және Информатика бойынша тәжірибелі оқытушылар</span>
+                <span class="ticker-item">⭐ 10 000+ оқушы бізбен табысқа жетті</span>
+                <span class="ticker-item">💻 Онлайн сабақтар - қалаған жеріңізден оқыңыз</span>
+                <span class="ticker-item">🎯 Грантқа түсу мүмкіндігіңізді арттырыңыз</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ======= CONTACTS PAGE START ======= -->
+    
+    <!-- Hero Section -->
+    <section class="contacts-hero">
+        <div class="container">
+            <div data-aos="fade-up">
+                <h1 data-translate="contacts_hero_title">Свяжитесь с нами</h1>
+                <p data-translate="contacts_hero_text">
+                    Мы готовы ответить на все ваши вопросы и помочь подобрать курс подготовки к ЕНТ. Свяжитесь с нами любым удобным способом!
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contacts Content -->
+    <section class="contacts-content">
+        <div class="container">
+            <div class="contacts-grid">
+                
+                <!-- Left: Contact Information -->
+                <div class="contact-info-block" data-aos="fade-right">
+                    <h2 data-translate="contacts_info_title">Контактная информация</h2>
+                    
+                    <!-- Address -->
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h3 data-translate="contacts_address_label">Адрес офиса</h3>
+                            <p data-translate="contacts_address">г. Астана, проспект Туран 37, офис 205</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Phone -->
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h3 data-translate="contacts_phone_label">Телефон</h3>
+                            <a href="tel:+77001234567">+7 (700) 123-45-67</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h3 data-translate="contacts_email_label">Электронная почта</h3>
+                            <a href="mailto:info@ent-bilim.kz">info@ent-bilim.kz</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Working Hours -->
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-details">
+                            <h3 data-translate="contacts_hours_label">Время работы</h3>
+                            <p data-translate="contacts_hours" style="white-space: pre-line;">Понедельник – Суббота
+9:00 – 20:00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <h3 data-translate="contacts_social_label">Мы в социальных сетях</h3>
+                            <div class="social-links">
+                                <!-- [PHOTO_CONTACTS_SOCIAL_ICONS] — social media icons -->
+                                <a href="https://t.me/uto92" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                                    </svg>
+                                </a>
+                                <a href="https://www.instagram.com/testcenterkz/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2m-.2 2A3.6 3.6 0 004 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 011.25 1.25A1.25 1.25 0 0117.25 8 1.25 1.25 0 0116 6.75a1.25 1.25 0 011.25-1.25M12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5m0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"/>
+                                    </svg>
+                                </a>
+                                <a href="https://www.tiktok.com/@testcenter_kz?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0115.54 3h-3.09v12.4a2.59 2.59 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 004.3 1.38V7.3s-1.88.09-3.24-1.48z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right: Contact Form -->
+                <div class="contact-form-block" data-aos="fade-left" data-aos-delay="200">
+                    <h2 data-translate="contacts_form_title">Задать вопрос</h2>
+                    <form class="consultation-form" id="contactsForm">
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Ваше имя" data-translate-placeholder="form_name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Email или телефон" data-translate-placeholder="contacts_form_contact" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-input" rows="6" placeholder="Ваше сообщение" data-translate-placeholder="contacts_form_message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" data-translate="contacts_form_submit">
+                            Отправить сообщение
+                        </button>
+                        <p class="form-note" data-translate="form_privacy">
+                            Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                        </p>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title" data-translate="contacts_map_title">Как нас найти</h2>
+                <p class="section-subtitle" data-translate="contacts_map_subtitle">
+                    Наш офис находится в центре города Астаны
+                </p>
+            </div>
+            
+            <div class="map-link-container" data-aos="fade-up" data-aos-delay="200" style="text-align: center; padding: 40px 20px;">
+                <a 
+                    href="https://www.google.com/maps/search/?api=1&query=Астана+Туран+даңғылы+37+офис+205" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="btn btn-primary btn-large"
+                    style="display: inline-flex; align-items: center; gap: 12px; text-decoration: none;"
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span data-translate="contacts_map_link">Открыть карту в Google Maps</span>
+                </a>
+                <p style="margin-top: 20px; color: var(--text-secondary); font-size: 0.9rem;">
+                    <span data-translate="contacts_address">г. Астана, проспект Туран 37, офис 205</span>
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ======= CONTACTS PAGE END ======= -->
+    
+    <!-- ======= FOOTER START ======= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column footer-about">
+                    <div class="footer-logo">
+                        <span class="logo-text">ENT-<span class="logo-accent">Bilim</span></span>
+                    </div>
+                    <p class="footer-description" data-translate="footer_description">
+                        Онлайн-платформа для подготовки к ЕНТ по всему Казахстану. Мы помогаем ученикам достичь высоких результатов и поступить в вузы мечты.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://t.me/uto92" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/testcenterkz/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2m-.2 2A3.6 3.6 0 004 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 011.25 1.25A1.25 1.25 0 0117.25 8 1.25 1.25 0 0116 6.75a1.25 1.25 0 011.25-1.25M12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5m0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@testcenter_kz?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0115.54 3h-3.09v12.4a2.59 2.59 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 004.3 1.38V7.3s-1.88.09-3.24-1.48z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading" data-translate="footer_about_title">О нас</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-translate="footer_about_1">О платформе</a></li>
+                        <li><a href="#" data-translate="footer_about_2">Преподаватели</a></li>
+                        <li><a href="#" data-translate="footer_about_3">Отзывы</a></li>
+                        <li><a href="#" data-translate="footer_about_4">Блог</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading" data-translate="footer_courses_title">Курсы</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#programs" data-translate="footer_courses_1">Полная подготовка</a></li>
+                        <li><a href="index.html#programs" data-translate="footer_courses_2">Ускоренный курс</a></li>
+                        <li><a href="index.html#programs" data-translate="footer_courses_3">Математика</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading" data-translate="footer_contact_title">Контакты</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <span class="contact-icon">📞</span>
+                            <a href="tel:+77001234567">+7 (700) 123-45-67</a>
+                        </li>
+                        <li>
+                            <span class="contact-icon">✉️</span>
+                            <a href="mailto:info@ent-bilim.kz">info@ent-bilim.kz</a>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📍</span>
+                            <span data-translate="contacts_address">г. Астана, проспект Туран 37, офис 205</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright" data-translate="footer_copyright">
+                    © 2025 ENT-Bilim. Все права защищены.
+                </p>
+                <div class="footer-legal">
+                    <a href="#" data-translate="footer_privacy">Политика конфиденциальности</a>
+                    <a href="#" data-translate="footer_terms">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ======= FOOTER END ======= -->
+    
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Translations -->
+    <script src="js/translations.js"></script>
+    
+    <!-- Main Script -->
+    <script src="js/script.js"></script>
+    
+    <script>
+        // Contacts page specific form handling
+        const contactsForm = document.getElementById('contactsForm');
+        if (contactsForm) {
+            // Форма будет обрабатываться через общую функцию handleFormSubmit из script.js
+            // Но можно добавить дополнительную логику здесь при необходимости
+        }
+    </script>
+</body>
+</html>
+
