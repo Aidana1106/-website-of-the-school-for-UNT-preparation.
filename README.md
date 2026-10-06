@@ -125,7 +125,11 @@ npm run dev
 - YouTube URL-дер embed форматында немесе стандартты форматта болуы керек
 - Деректер базасы автоматты түрде құрылады
 
-## Лицензия
+## Фото
+<img width="1915" height="1046" alt="Снимок экрана 2026-09-30 225750" src="https://github.com/user-attachments/assets/b1823962-90d2-4c2f-bd3e-836d88b51baf" />
+<img width="1919" height="1039" alt="Снимок экрана 2026-09-30 225801" src="https://github.com/user-attachments/assets/bf7041f2-ba4b-4584-bd49-8dd197c7a23b" />
+<img width="1916" height="1034" alt="Снимок экрана 2026-09-30 225815" src="https://github.com/user-attachments/assets/288afde6-aa9d-4792-821e-ecae818ca282" />
+<img width="1919" height="1036" alt="Снимок экрана 2026-09-30 225829" src="https://github.com/user-attachments/assets/3d842796-48c0-4682-b2d6-f025876d592c" />
+<img width="1919" height="1020" alt="Снимок экрана 2026-09-30 225855" src="https://github.com/user-attachments/assets/6d93bad6-e838-4e9a-a8ec-922cd76bccc6" />
 
-MIT
 
