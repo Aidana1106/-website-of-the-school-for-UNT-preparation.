@@ -68,37 +68,26 @@ npm run dev
 
 ```
 .
+├── public/                  # Фронтенд (Express осы папкадан береді)
+│   ├── css/                 # CSS стильдері
+│   ├── js/                  # JavaScript файлдары
+│   ├── images/              # Суреттер
+│   └── *.html               # Беттер (index, login, register, dashboard, ...)
 ├── config/
 │   └── database.js          # Деректер базасы конфигурациясы
 ├── middleware/
 │   └── auth.js              # JWT аутентификация
-├── routes/
-│   ├── auth.js              # Авторизация маршруттары
-│   ├── videos.js            # Видео маршруттары
-│   ├── assignments.js       # Тапсырма маршруттары
-│   ├── submissions.js       # Жіберу маршруттары
-│   ├── progress.js          # Прогресс маршруттары
-│   ├── comments.js          # Комментарий маршруттары
-│   └── upload.js            # Файл жүктеу маршруттары
-├── uploads/                 # Жүктелген файлдар
-├── css/                     # CSS стильдері
-├── js/                      # JavaScript файлдары
-│   ├── script.js            # Негізгі скрипт
-│   ├── translations.js      # Аудармалар
-│   ├── auth.js              # Авторизация
-│   ├── dashboard.js         # Жеке кабинет
-│   └── lesson.js            # Сабақ беті
-├── index.html               # Басты бет
-├── login.html               # Кіру беті
-├── register.html            # Тіркелу беті
-├── dashboard.html           # Жеке кабинет
-├── lesson.html              # Сабақ беті
-├── contacts.html            # Байланыс
-├── trial-lesson.html        # Сынақ сабақ
+├── routes/                  # API маршруттары (auth, videos, tests, admin, ...)
+├── scripts/                 # Көмекші скрипттер (тесттер қосу, админ құру, БД қарау)
+├── docs/                    # Құжаттама (Telegram, deploy, changelog, ...)
+├── uploads/                 # Жүктелген файлдар (git-ке кірмейді)
 ├── server.js                # Express сервер
+├── start-server.bat         # Серверді іске қосу (Windows)
 ├── package.json             # NPM пакеттері
 └── README.md                # Бұл файл
 ```
+
+Көмекші скрипттер жоба түбірінен іске қосылады: `node scripts/create-admin.js` немесе `scripts/` ішіндегі `.bat` файлын екі рет басу.
 
 ## API Эндпоинттер
 

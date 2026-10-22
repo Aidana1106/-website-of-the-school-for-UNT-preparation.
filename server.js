@@ -56,7 +56,7 @@ app.use('/api/telegram', telegramRoutes);
 app.use('/api/tests', testRoutes);
 
 // Frontend статикалық файлдар (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Барлық маршруттарды frontend-ке бағыттау (SPA үшін)
 // Только для не-API запросов и только для GET запросов
@@ -67,7 +67,7 @@ app.get('*', (req, res) => {
   }
   
   // HTML файлдарын табу
-  const indexPath = path.join(__dirname, 'index.html');
+  const indexPath = path.join(__dirname, 'public', 'index.html');
   res.sendFile(indexPath);
 });
 
